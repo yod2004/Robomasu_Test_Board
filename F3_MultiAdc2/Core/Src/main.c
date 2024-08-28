@@ -1,5 +1,5 @@
 /* USER CODE BEGIN Header */
-/**ロボマステスト基板の可変抵抗の値をCANで送ります。
+/**ロボ�??��ス?��?スト基板の可変抵抗�??��値をCANで送ります�??
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
@@ -120,16 +120,21 @@ int main(void)
 	  }
 	  if(0 < HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){//もしメールボックスに空きがあれば
 	      TxHeader.StdId = 0x100;                 // CAN ID
-	      TxHeader.RTR = CAN_RTR_DATA;            // フレー�?タイプ�?��?ータフレー�?
-	      TxHeader.IDE = CAN_ID_STD;              // 標準ID(11?��ﾞｯ?�?)
-	      TxHeader.DLC = 8;                       // �?ータ長は8バイトに
+	      TxHeader.RTR = CAN_RTR_DATA;            // フレー??��?��?タイプ�???��?��??��?��?ータフレー??��?��?
+	      TxHeader.IDE = CAN_ID_STD;              // 標準ID(11???��?��??��?��??��?��?��???��?��?)
+	      TxHeader.DLC = 8;                       // ??��?��?ータ長は8バイトに
 	      TxHeader.TransmitGlobalTime = DISABLE;  // ???
-	      TxData[0] = adcvalue[0];//送信�?ータを�?��?
+	      TxData[0] = adcvalue[0];//送信??��?��?ータを�???��?��??��?��?
 	      TxData[1] = adcvalue[1];
 	      TxData[2] = adcvalue[2];
 	      TxData[3] = adcvalue[3];
-	      HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);//TxDataをTxHeaderの設定�?�りに送信する
+	      HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);//TxDataをTxHeaderの設定�???��?��りに送信する
 	  }
+	  HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,GPIO_PIN_SET);
+	  HAL_Delay(500);
+	  HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,GPIO_PIN_RESET);
+	  HAL_Delay(500);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -352,12 +357,24 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : LED1_Pin */
+  GPIO_InitStruct.Pin = LED1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LED1_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
