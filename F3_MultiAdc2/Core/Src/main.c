@@ -1,5 +1,5 @@
 /* USER CODE BEGIN Header */
-/**ロボ�??��ス?��?スト基板の可変抵抗�??��値をCANで送ります�??
+/**ロボ�???��?��ス??��?��?スト基板の可変抵抗�???��?��値をCANで送ります�??
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
@@ -120,15 +120,15 @@ int main(void)
 	  }
 	  if(0 < HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){//もしメールボックスに空きがあれば
 	      TxHeader.StdId = 0x100;                 // CAN ID
-	      TxHeader.RTR = CAN_RTR_DATA;            // フレー??��?��?タイプ�???��?��??��?��?ータフレー??��?��?
-	      TxHeader.IDE = CAN_ID_STD;              // 標準ID(11???��?��??��?��??��?��?��???��?��?)
-	      TxHeader.DLC = 8;                       // ??��?��?ータ長は8バイトに
+	      TxHeader.RTR = CAN_RTR_DATA;            // フレー???��?��??��?��?タイプ�????��?��??��?��???��?��??��?��?ータフレー???��?��??��?��?
+	      TxHeader.IDE = CAN_ID_STD;              // 標準ID(11????��?��??��?��???��?��??��?��???��?��??��?��??��?��????��?��??��?��?)
+	      TxHeader.DLC = 8;                       // ???��?��??��?��?ータ長は8バイトに
 	      TxHeader.TransmitGlobalTime = DISABLE;  // ???
-	      TxData[0] = adcvalue[0];//送信??��?��?ータを�???��?��??��?��?
+	      TxData[0] = adcvalue[0];//送信???��?��??��?��?ータを�????��?��??��?��???��?��??��?��?
 	      TxData[1] = adcvalue[1];
 	      TxData[2] = adcvalue[2];
 	      TxData[3] = adcvalue[3];
-	      HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);//TxDataをTxHeaderの設定�???��?��りに送信する
+	      HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox);//TxDataをTxHeaderの設定�????��?��??��?��りに送信する
 	  }
 	  HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin,GPIO_PIN_SET);
 	  HAL_Delay(500);
@@ -281,8 +281,8 @@ static void MX_CAN_Init(void)
   hcan.Init.Prescaler = 1;
   hcan.Init.Mode = CAN_MODE_NORMAL;
   hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
-  hcan.Init.TimeSeg1 = CAN_BS1_11TQ;
-  hcan.Init.TimeSeg2 = CAN_BS2_4TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_5TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_2TQ;
   hcan.Init.TimeTriggeredMode = DISABLE;
   hcan.Init.AutoBusOff = DISABLE;
   hcan.Init.AutoWakeUp = DISABLE;
