@@ -74,15 +74,20 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 	uint8_t RxData[8];
 	if(HAL_CAN_GetRxMessage(hcan,CAN_RX_FIFO0,&RxHeader,RxData)==HAL_OK){
 		id = (RxHeader.IDE == CAN_ID_STD)? RxHeader.StdId : RxHeader.ExtId;     // ID
-		dlc = RxHeader.DLC;                                                     // DLC
-		data[0] = RxData[0];                                                    // Data
-		data[1] = RxData[1];
-		data[2] = RxData[2];
-		data[3] = RxData[3];
-		data[4] = RxData[4];
-		data[5] = RxData[5];
-		data[6] = RxData[6];
-		data[7] = RxData[7];
+		dlc = RxHeader.DLC;// DLC
+		CanId[0]=(id&0xF00)>>8;
+		CanId[1]=(id&0x0F0)>>4;
+		CanId[2]=(id&0x00F);
+		if((myId[0]==CanId[0])&&(myId[1]==CanId[1])&&(myId[2]==CanId[2])){
+			data[0] = RxData[0];                                                    // Data
+			data[1] = RxData[1];
+			data[2] = RxData[2];
+			data[3] = RxData[3];
+			data[4] = RxData[4];
+			data[5] = RxData[5];
+			data[6] = RxData[6];
+			data[7] = RxData[7];
+		}
 	}
 }
 /* USER CODE END PFP */
@@ -167,6 +172,7 @@ int main(void)
 		  printf("-->id[%d%d%d]%d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
 	  }else{
 			  if(0<HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){
+				  TxHeader.StdId = (myId[0]<<8)|(myId[1]<<4)|(myId[2]);
 				  TxData[0] = result[0]/16;
 				  TxData[1] = result[1]/16;
 				  TxData[2] = result[2]/16;
