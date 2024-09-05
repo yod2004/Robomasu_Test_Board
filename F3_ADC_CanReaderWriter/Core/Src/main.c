@@ -155,8 +155,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_SET) {
-	      // PA0がHIGHの場合�??��処?��?
+	  if(result[3]>2000){
 		  for(uint8_t i = 0 ; i<3 ; i++){
 			  myId[i]=result[i]/256;//0~4095 -> 0~15
 		  }
@@ -166,9 +165,8 @@ int main(void)
 			  }
 		  }
 		  printf("-->id[%d%d%d]%d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
-	  } else {
-	      // PA0がLOWの場合�??��処?��?
-		  if(0<HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){
+	  }else{
+			  if(0<HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){
 				  TxData[0] = result[0]/16;
 				  TxData[1] = result[1]/16;
 				  TxData[2] = result[2]/16;
@@ -179,8 +177,8 @@ int main(void)
 				  TxData[7] = 0;
 				  HAL_CAN_AddTxMessage(&hcan,&TxHeader,TxData,&TxMailbox);
 			  }
-		  printf("<--id[%d%d%d]%d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],TxData[0],TxData[1],TxData[2],TxData[3],TxData[4],TxData[5],TxData[6],TxData[7]);
-	  }
+			  printf("<--id[%d%d%d]%d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],TxData[0],TxData[1],TxData[2],TxData[3],TxData[4],TxData[5],TxData[6],TxData[7]);
+		  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
