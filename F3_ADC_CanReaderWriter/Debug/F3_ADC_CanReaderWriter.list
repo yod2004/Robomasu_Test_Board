@@ -39,15 +39,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  0001c6f0  00000000  00000000  000188bf  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000e4fe  00000000  00000000  00034faf  2**0
+ 18 .debug_line   0000e500  00000000  00000000  00034faf  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000a6954  00000000  00000000  000434ad  2**0
+ 19 .debug_str    000a6954  00000000  00000000  000434af  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000043  00000000  00000000  000e9e01  2**0
+ 20 .comment      00000043  00000000  00000000  000e9e03  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00003560  00000000  00000000  000e9e44  2**2
+ 21 .debug_frame  00003560  00000000  00000000  000e9e48  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 00000090  00000000  00000000  000ed3a4  2**0
+ 22 .debug_line_str 00000090  00000000  00000000  000ed3a8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -460,7 +460,7 @@ int main(void)
  800045e:	d9f5      	bls.n	800044c <main+0x104>
 			  }
 		  }
-		  printf("-->id[%d%d%d]%d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
+		  printf("-->[%d%d%d]  %d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
  8000460:	4b56      	ldr	r3, [pc, #344]	@ (80005bc <main+0x274>)
  8000462:	781b      	ldrb	r3, [r3, #0]
  8000464:	469c      	mov	ip, r3
@@ -509,13 +509,13 @@ int main(void)
  80004ba:	f004 fd85 	bl	8004fc8 <iprintf>
  80004be:	e79e      	b.n	80003fe <main+0xb6>
 	  }else{
-			  if(0<HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){
+		  if(0<HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){
  80004c0:	483b      	ldr	r0, [pc, #236]	@ (80005b0 <main+0x268>)
  80004c2:	f001 fe70 	bl	80021a6 <HAL_CAN_GetTxMailboxesFreeLevel>
  80004c6:	4603      	mov	r3, r0
  80004c8:	2b00      	cmp	r3, #0
  80004ca:	d03a      	beq.n	8000542 <main+0x1fa>
-				  TxHeader.StdId = (myId[0]<<8)|(myId[1]<<4)|(myId[2]);
+			  TxHeader.StdId = (myId[0]<<8)|(myId[1]<<4)|(myId[2]);
  80004cc:	4b3b      	ldr	r3, [pc, #236]	@ (80005bc <main+0x274>)
  80004ce:	781b      	ldrb	r3, [r3, #0]
  80004d0:	021a      	lsls	r2, r3, #8
@@ -529,7 +529,7 @@ int main(void)
  80004e0:	461a      	mov	r2, r3
  80004e2:	4b31      	ldr	r3, [pc, #196]	@ (80005a8 <main+0x260>)
  80004e4:	601a      	str	r2, [r3, #0]
-				  TxData[0] = result[0]/16;
+			  TxData[0] = result[0]/16;
  80004e6:	4b34      	ldr	r3, [pc, #208]	@ (80005b8 <main+0x270>)
  80004e8:	881b      	ldrh	r3, [r3, #0]
  80004ea:	091b      	lsrs	r3, r3, #4
@@ -537,7 +537,7 @@ int main(void)
  80004ee:	b2da      	uxtb	r2, r3
  80004f0:	4b35      	ldr	r3, [pc, #212]	@ (80005c8 <main+0x280>)
  80004f2:	701a      	strb	r2, [r3, #0]
-				  TxData[1] = result[1]/16;
+			  TxData[1] = result[1]/16;
  80004f4:	4b30      	ldr	r3, [pc, #192]	@ (80005b8 <main+0x270>)
  80004f6:	885b      	ldrh	r3, [r3, #2]
  80004f8:	091b      	lsrs	r3, r3, #4
@@ -545,7 +545,7 @@ int main(void)
  80004fc:	b2da      	uxtb	r2, r3
  80004fe:	4b32      	ldr	r3, [pc, #200]	@ (80005c8 <main+0x280>)
  8000500:	705a      	strb	r2, [r3, #1]
-				  TxData[2] = result[2]/16;
+			  TxData[2] = result[2]/16;
  8000502:	4b2d      	ldr	r3, [pc, #180]	@ (80005b8 <main+0x270>)
  8000504:	889b      	ldrh	r3, [r3, #4]
  8000506:	091b      	lsrs	r3, r3, #4
@@ -553,7 +553,7 @@ int main(void)
  800050a:	b2da      	uxtb	r2, r3
  800050c:	4b2e      	ldr	r3, [pc, #184]	@ (80005c8 <main+0x280>)
  800050e:	709a      	strb	r2, [r3, #2]
-				  TxData[3] = result[3]/16;
+			  TxData[3] = result[3]/16;
  8000510:	4b29      	ldr	r3, [pc, #164]	@ (80005b8 <main+0x270>)
  8000512:	88db      	ldrh	r3, [r3, #6]
  8000514:	091b      	lsrs	r3, r3, #4
@@ -561,30 +561,30 @@ int main(void)
  8000518:	b2da      	uxtb	r2, r3
  800051a:	4b2b      	ldr	r3, [pc, #172]	@ (80005c8 <main+0x280>)
  800051c:	70da      	strb	r2, [r3, #3]
-				  TxData[4] = 0;
+			  TxData[4] = 0;
  800051e:	4b2a      	ldr	r3, [pc, #168]	@ (80005c8 <main+0x280>)
  8000520:	2200      	movs	r2, #0
  8000522:	711a      	strb	r2, [r3, #4]
-				  TxData[5] = 0;
+			  TxData[5] = 0;
  8000524:	4b28      	ldr	r3, [pc, #160]	@ (80005c8 <main+0x280>)
  8000526:	2200      	movs	r2, #0
  8000528:	715a      	strb	r2, [r3, #5]
-				  TxData[6] = 0;
+			  TxData[6] = 0;
  800052a:	4b27      	ldr	r3, [pc, #156]	@ (80005c8 <main+0x280>)
  800052c:	2200      	movs	r2, #0
  800052e:	719a      	strb	r2, [r3, #6]
-				  TxData[7] = 0;
+			  TxData[7] = 0;
  8000530:	4b25      	ldr	r3, [pc, #148]	@ (80005c8 <main+0x280>)
  8000532:	2200      	movs	r2, #0
  8000534:	71da      	strb	r2, [r3, #7]
-				  HAL_CAN_AddTxMessage(&hcan,&TxHeader,TxData,&TxMailbox);
+			  HAL_CAN_AddTxMessage(&hcan,&TxHeader,TxData,&TxMailbox);
  8000536:	4b25      	ldr	r3, [pc, #148]	@ (80005cc <main+0x284>)
  8000538:	4a23      	ldr	r2, [pc, #140]	@ (80005c8 <main+0x280>)
  800053a:	491b      	ldr	r1, [pc, #108]	@ (80005a8 <main+0x260>)
  800053c:	481c      	ldr	r0, [pc, #112]	@ (80005b0 <main+0x268>)
  800053e:	f001 fd62 	bl	8002006 <HAL_CAN_AddTxMessage>
-			  }
-			  printf("<--id[%d%d%d]%d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],TxData[0],TxData[1],TxData[2],TxData[3],TxData[4],TxData[5],TxData[6],TxData[7]);
+		  }
+		  printf("<--[%d%d%d]  %d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],TxData[0],TxData[1],TxData[2],TxData[3],TxData[4],TxData[5],TxData[6],TxData[7]);
  8000542:	4b1e      	ldr	r3, [pc, #120]	@ (80005bc <main+0x274>)
  8000544:	781b      	ldrb	r3, [r3, #0]
  8000546:	469c      	mov	ip, r3
