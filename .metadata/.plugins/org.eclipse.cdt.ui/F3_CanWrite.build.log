@@ -1,0 +1,13 @@
+22:36:13 **** Incremental Build of configuration Debug for project F3_CanWrite ****
+make -j12 all 
+arm-none-eabi-size  F3_CanWrite.elf 
+arm-none-eabi-objdump -h -S F3_CanWrite.elf  > "F3_CanWrite.list"
+   text	   data	    bss	    dec	    hex	filename
+  14064	     12	   1836	  15912	   3e28	F3_CanWrite.elf
+Finished building: default.size.stdout
+ 
+Finished building: F3_CanWrite.list
+ 
+
+22:36:14 Build Finished. 0 errors, 0 warnings. (took 714ms)
+

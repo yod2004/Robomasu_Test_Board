@@ -1,0 +1,12 @@
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReaderWriter Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReader Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ControllRobomasu Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReaderWriter_1Mbps Debug
+eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReader\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReader\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReaderWriter\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReaderWriter_1Mbps\ Debug\ (1)/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ADC_CanReaderWriter_1Mbps\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_CanWrite\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:F3_ControllRobomasu\ Debug/activeLaunchMode=run

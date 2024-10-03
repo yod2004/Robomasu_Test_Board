@@ -1,0 +1,10 @@
+15:33:45 **** Build of configuration Debug for project F3_ADC_CanReaderWriter ****
+make -j12 all 
+arm-none-eabi-size  F3_ADC_CanReaderWriter.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24328	    104	   2336	  26768	   6890	F3_ADC_CanReaderWriter.elf
+Finished building: default.size.stdout
+ 
+
+15:33:47 Build Finished. 0 errors, 0 warnings. (took 1s.299ms)
+

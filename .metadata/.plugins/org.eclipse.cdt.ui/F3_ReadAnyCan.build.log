@@ -1,0 +1,24 @@
+18:22:54 **** Incremental Build of configuration Debug for project F3_ReadAnyCan ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:135:21: warning: format '%x' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  135 |           printf("[%x]-->%d,%d,%d,%d,%d,%d,%d,%d\r\n",id,data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
+      |                    ~^                                 ~~
+      |                     |                                 |
+      |                     unsigned int                      uint32_t {aka long unsigned int}
+      |                    %lx
+arm-none-eabi-gcc -o "F3_ReadAnyCan.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ohori\Creating\code\Github_Robomas_Test_Board\Robomasu_Test_Board\F3_ReadAnyCan\STM32F303K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F3_ReadAnyCan.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: F3_ReadAnyCan.elf
+ 
+arm-none-eabi-size  F3_ReadAnyCan.elf 
+arm-none-eabi-objdump -h -S F3_ReadAnyCan.elf  > "F3_ReadAnyCan.list"
+   text	   data	    bss	    dec	    hex	filename
+  18276	    104	   2136	  20516	   5024	F3_ReadAnyCan.elf
+Finished building: default.size.stdout
+ 
+Finished building: F3_ReadAnyCan.list
+ 
+
+18:22:55 Build Finished. 0 errors, 1 warnings. (took 1s.671ms)
+
