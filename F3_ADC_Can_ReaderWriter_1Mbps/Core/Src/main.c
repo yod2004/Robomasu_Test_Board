@@ -87,6 +87,15 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 			data[5] = RxData[5];
 			data[6] = RxData[6];
 			data[7] = RxData[7];
+		}else{
+			data[0] = 0;
+			data[1] = 0;
+			data[2] = 0;
+			data[3] = 0;
+			data[4] = 0;
+			data[5] = 0;
+			data[6] = 0;
+			data[7] = 0;
 		}
 	}
 }
@@ -171,16 +180,17 @@ int main(void)
 		  }
 		  printf("-->[%d%d%d]  %d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7]);
 	  }else{
+		  TxData[0] = result[0]/16;
+		  			  TxData[1] = result[1]/16;
+		  			  TxData[2] = result[2]/16;
+		  			  TxData[3] = result[3]/16;
+		  			 s TxData[4] = 0;
+		  			  TxData[5] = 0;
+		  			  TxData[6] = 0;
+		  			  TxData[7] = 0;
 		  if(0<HAL_CAN_GetTxMailboxesFreeLevel(&hcan)){
 			  TxHeader.StdId = (myId[0]<<8)|(myId[1]<<4)|(myId[2]);
-			  TxData[0] = result[0]/16;
-			  TxData[1] = result[1]/16;
-			  TxData[2] = result[2]/16;
-			  TxData[3] = result[3]/16;
-			  TxData[4] = 0;
-			  TxData[5] = 0;
-			  TxData[6] = 0;
-			  TxData[7] = 0;
+
 			  HAL_CAN_AddTxMessage(&hcan,&TxHeader,TxData,&TxMailbox);
 		  }
 		  printf("<--[%d%d%d]  %d,%d,%d,%d,%d,%d,%d,%d\r\n",myId[0],myId[1],myId[2],TxData[0],TxData[1],TxData[2],TxData[3],TxData[4],TxData[5],TxData[6],TxData[7]);

@@ -1,10 +1,17 @@
-13:12:06 **** Incremental Build of configuration Debug for project F3_ADC_CanReaderWriter_1Mbps ****
+22:12:09 **** Incremental Build of configuration Debug for project F3_ADC_CanReaderWriter_1Mbps ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "F3_ADC_CanReaderWriter_1Mbps.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ohori\Creating\code\Github_Robomas_Test_Board\Robomasu_Test_Board\F3_ADC_Can_ReaderWriter_1Mbps\STM32F303K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F3_ADC_CanReaderWriter_1Mbps.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: F3_ADC_CanReaderWriter_1Mbps.elf
+ 
 arm-none-eabi-size  F3_ADC_CanReaderWriter_1Mbps.elf 
+arm-none-eabi-objdump -h -S F3_ADC_CanReaderWriter_1Mbps.elf  > "F3_ADC_CanReaderWriter_1Mbps.list"
    text	   data	    bss	    dec	    hex	filename
-  24288	    104	   2336	  26728	   6868	F3_ADC_CanReaderWriter_1Mbps.elf
+  24340	    104	   2336	  26780	   689c	F3_ADC_CanReaderWriter_1Mbps.elf
 Finished building: default.size.stdout
  
+Finished building: F3_ADC_CanReaderWriter_1Mbps.list
+ 
 
-13:12:06 Build Finished. 0 errors, 0 warnings. (took 316ms)
+22:12:10 Build Finished. 0 errors, 0 warnings. (took 1s.581ms)
 
